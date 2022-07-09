@@ -80,6 +80,8 @@ coctrl:
 
 这里采用ApplicationRunner，项目启动完成，查询数据库并机器人信息添加到配置
 
+> 算法部分参考了项目：https://github.com/AnswerAIL/dingtalk-spring-boot-starter
+
 ~~~java
 @Component
 public class RobotConfig implements ApplicationRunner {
@@ -94,12 +96,12 @@ public class RobotConfig implements ApplicationRunner {
                 GroupArgs.builder()
                         .groupId("111")
                         .dingTalkArgs(Lists.newArrayList(
-                                DingTalkArgs.builder().accessToken("d4a24b6ea884d5261ac4ec719ee30bb65638fc6e880d3ec245fb95e9cdbc3630")
-                                        .secret("SEC8cc743fc2286f5209f1162d7230b13a0bff18d131f47515843fc0cea661152bd").build(),
-                                DingTalkArgs.builder().accessToken("421b36a2e9a41f6e3103ea4114efe665df6458982526ca46f87f389753cdf5df")
-                                        .secret("SEC3f1ed3e72a0582c40d27aac1c52cb3a85d1cd3b8bd0710bd04be3de3fe0a2d6d").build(),
-                                DingTalkArgs.builder().accessToken("15a2dba9253dd92b815a2fac923b42ef1622c8ae0c3d8e9d7cfe3ce5e2ee1549")
-                                        .secret("SEC475ecf41acaa4f1dab5074ba61e7d32f06e20d2e277307d967c05d4d50e52d69").build()
+                                DingTalkArgs.builder().accessToken("d4a24b6ea8849ee30bb65638fc6e880d3ec245fb95e9cdbc3630")
+                                        .secret("SEC8cc743fc2286f5209f11623a0bff18d131f47515843fc0cea661152bd").build(),
+                                DingTalkArgs.builder().accessToken("421b36a2e9e3103ea41efef6458982526ca46f87f389753cdf5df")
+                                        .secret("SEC3f1ed3e72a0582c40d27ab3a85cd3b8bd0710bd04be3de3fe0a2d6d").build(),
+                                DingTalkArgs.builder().accessToken("15a2dba92b815a2fac9231622c8ae0c3d8e9d7cfe3ce5e2ee1549")
+                                        .secret("SEC475ecf41acaa4f1dabe7d32f06e20d2e277307d967c05d4d50e52d69").build()
                         ))
                         //轮询算法处理消息发送
                         .algorithmHandler(new RoundRobinHandler())
