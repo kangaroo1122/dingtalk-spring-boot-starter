@@ -7,6 +7,36 @@
     <groupId>com.kangaroohy</groupId>
     <artifactId>dingtalk-spring-boot-starter</artifactId>
     <version>1.0.0</version>
+    <url>https://github.com/kangaroo1122/dingtalk-spring-boot-starter</url>
+
+    <organization>
+        <name>kangaroo1122</name>
+        <url>https://www.kangaroohy.com</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>kangaroo1122</name>
+            <email>326170945@qq.com</email>
+            <organization>kangaroo1122</organization>
+            <organizationUrl>https://www.kangaroohy.com</organizationUrl>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <licenses>
+        <!-- Apache license -->
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/kangaroo1122/dingtalk-spring-boot-starter</url>
+        <connection>https://github.com/kangaroo1122/dingtalk-spring-boot-starter.git</connection>
+    </scm>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/kangaroo1122/dingtalk-spring-boot-starter/issues</url>
+    </issueManagement>
 
     <properties>
         <java.version>1.8</java.version>
@@ -52,4 +82,64 @@
             <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <name>oss nexus repository hosting</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>oss nexus repository hosting</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <!--生成源码插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--javadoc生成插件		-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- jar等文件签名插件，用于生成asc签名文件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
