@@ -131,7 +131,7 @@
                 <artifactId>maven-gpg-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>sign-artifacts</id>
+                        <id>gpg</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>sign</goal>
