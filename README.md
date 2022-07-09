@@ -17,6 +17,16 @@
 
 ## 使用
 
+### maven
+
+~~~xml
+<dependency>
+  <groupId>com.kangaroohy</groupId>
+  <artifactId>dingtalk-spring-boot-starter</artifactId>
+  <version>1.0.0</version>
+</dependency>
+~~~
+
 ### 默认机器人配置
 
 无论单机器人还是多机器人，都必须配置
