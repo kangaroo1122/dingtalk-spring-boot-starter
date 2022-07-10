@@ -19,7 +19,7 @@ public class DingTalkConstant {
     /**
      * 配置前缀
      */
-    public static final String PREFIX = "coctrl.ding-talk";
+    public static final String PREFIX = "kangaroohy.ding-talk";
 
     /**
      * 链接打开方式前缀

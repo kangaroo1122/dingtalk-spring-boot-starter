@@ -32,7 +32,7 @@
 无论单机器人还是多机器人，都必须配置
 
 ~~~yaml
-coctrl:
+kangaroohy:
   ding-talk:
     access-token: d4a24b6ea884d5d3ec245fb95e9cdbc3630
     secret: SEC8cc743fc2286f5209f1162d72131f47515843fc0cea661152bd
