@@ -2,6 +2,7 @@ package com.kangaroohy.dingtalk.configuration;
 
 import com.kangaroohy.dingtalk.constant.DingTalkConstant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 2022/06/29 15:55
  */
 @Component
+@Primary
 @ConfigurationProperties(prefix = DingTalkConstant.PREFIX)
 public class DingTalkProperties {
 

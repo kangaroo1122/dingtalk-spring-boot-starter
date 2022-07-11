@@ -23,7 +23,7 @@
 <dependency>
   <groupId>com.kangaroohy</groupId>
   <artifactId>dingtalk-spring-boot-starter</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ~~~
 
