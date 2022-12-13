@@ -130,7 +130,6 @@ public final class JVMRandom extends Random {
      * @return the random long
      * @throws IllegalArgumentException when <code>n &lt;= 0</code>
      */
-    @Override
     public long nextLong(long n) {
         if (n <= 0) {
             throw new IllegalArgumentException(
