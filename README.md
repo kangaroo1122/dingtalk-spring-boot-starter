@@ -21,15 +21,13 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.kangaroohy/dingtalk-spring-boot-starter.svg)](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.kangaroohy%22%20AND%20a%3A%22dingtalk-spring-boot-starter%22)
 
-1.0.3 版本 对应 spring boot 2.x JDK version 1.8+
-
-3.0.0 版本 对应 spring boot 3.x JDK version 17+
+3.x 版本 适配 spring boot 3.x，也可在spring boot 2.x中使用
 
 ~~~xml
 <dependency>
   <groupId>com.kangaroohy</groupId>
   <artifactId>dingtalk-spring-boot-starter</artifactId>
-  <version>1.0.3</version>
+  <version>3.0.1</version>
 </dependency>
 ~~~
 
