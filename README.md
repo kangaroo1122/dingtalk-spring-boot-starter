@@ -15,9 +15,9 @@
 >
 > FeedCard
 
-## 使用
+## 1 使用
 
-### maven
+### 1.1 maven
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.kangaroohy/dingtalk-spring-boot-starter.svg)](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.kangaroohy%22%20AND%20a%3A%22dingtalk-spring-boot-starter%22)
 
@@ -31,7 +31,7 @@
 </dependency>
 ~~~
 
-### 默认机器人配置
+### 1.2 默认机器人配置
 
 无论单机器人还是多机器人，都必须配置
 
@@ -42,7 +42,7 @@ kangaroohy:
     secret: SEC8cc743fc2286f5209f1162d72131f47515843fc0cea661152bd
 ~~~
 
-### 单机器人使用
+### 1.3 单机器人使用
 
 ~~~java
     @Autowired
@@ -88,11 +88,13 @@ kangaroohy:
 
 ~~~
 
-### 多机器人使用
+### 1.4 多机器人动态配置，如 数据库查询
+
+*3.0.2 版本开始支持 yml 配置分组机器人，查看 1.5 节*
 
 多机器人使用时，需配置对应的机器人群组信息
 
-这里采用ApplicationRunner，项目启动完成，查询数据库并机器人信息添加到配置
+这里采用ApplicationRunner，项目启动完成，**查询数据库** 并将机器人信息添加到配置
 
 > 算法部分参考了项目：https://github.com/AnswerAIL/dingtalk-spring-boot-starter
 
@@ -135,4 +137,30 @@ public class RobotConfig implements ApplicationRunner {
         talkSender.send(TextArgs.builder().content("群组机器人测试2").build(), "111");
         talkSender.send(TextArgs.builder().content("群组机器人测试3").build(), "111");
         talkSender.send(TextArgs.builder().content("群组机器人测试4").build(), "111");
+~~~
+
+### 1.5 多机器人yml配置
+
+自3.0.2版本开始，支持 yml 种配置分组机器人，如下：
+
+~~~yaml
+kangaroohy:
+  ding-talk:
+    access-token: d9b913ef5d9af4687f0dc764684ade17b504547e930ee5976ffd578
+    secret: SEC650d8da822e681b0e8c5a3da71658a82e2f8c83e82f1378e66414
+    groups:
+      group1: # 分组名
+        algorithm-handler: com.kangaroohy.dingtalk.multiple.algorithm.RoundRobinHandler # 发送算法，这里轮询，可自己实现相关算法
+        robots:
+          - access-token: d8074a31ae7cf539cdf204e1420e9653e63d8d7299d2286d93cee5
+            secret: SECa93355b1e75f63b1159be3e66f6caf964430d104c6e77831da0618
+          - access-token: 28f7ca656c91a010a7c52cd12a352541822dd8e4353cef1ac8aa53
+            secret: SECa771faa5e9dde4bc884a596f6f39d42f341ef35513051ad305a67d330
+      group2:
+        algorithm-handler: com.kangaroohy.dingtalk.multiple.algorithm.DingTalkHandler
+        robots:
+          - access-token: d8074a31ae7cf539cdfd52e1420e9653e63d8d7299d2286d93cee5
+            secret: SECa93355b1e75f63b1159be3e6c70d504474430d104c6e77831da0618
+          - access-token: 28f7ca656c91a010a78d109f2cd12a352541822dd8e4353cef1ac8aa53
+            secret: SECa771faa5e9dde4bc884a596f39d42f341ef35513051ad305a67d330
 ~~~

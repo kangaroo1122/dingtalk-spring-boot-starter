@@ -5,6 +5,7 @@ import com.kangaroohy.dingtalk.constant.DingTalkConstant;
 import com.kangaroohy.dingtalk.exception.DingTalkException;
 import com.kangaroohy.dingtalk.multiple.entity.DingTalkArgs;
 import com.kangaroohy.dingtalk.multiple.entity.GroupArgs;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -26,6 +27,25 @@ public class DefaultMultipleRobot implements IMultipleRobot {
                 .dingTalkArgs(Collections.singletonList(DingTalkArgs.builder().accessToken(properties.getAccessToken()).secret(properties.getSecret() == null ? null : properties.getSecret()).build()))
                 .build();
         groupArgsMap.put(DingTalkConstant.DEFAULT_ROBOT_GROUP_ID, groupArgs);
+
+        Map<String, DingTalkProperties.GroupProperties> groups = properties.getGroups();
+        List<DingTalkProperties.RobotProperties> collect = groups.values().stream().map(DingTalkProperties.GroupProperties::getRobots)
+                .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+        int size = (int) collect.stream().map(item -> StringUtils.hasText(item.getAccessToken())).count();
+        if (size != collect.size()) {
+            throw new DingTalkException("机器人accessToken必须配置");
+        }
+        if (!groups.isEmpty()) {
+            groups.forEach((groupId, robots) -> {
+                List<DingTalkArgs> dingTalkArgs = new ArrayList<>();
+                robots.getRobots().forEach(robot -> dingTalkArgs.add(DingTalkArgs.builder().accessToken(robot.getAccessToken()).secret(robot.getSecret()).build()));
+                try {
+                    groupArgsMap.put(groupId, GroupArgs.builder().groupId(groupId).dingTalkArgs(dingTalkArgs).algorithmHandler(robots.getAlgorithmHandler().newInstance()).build());
+                } catch (InstantiationException | IllegalAccessException e) {
+                    throw new DingTalkException(e);
+                }
+            });
+        }
     }
 
 
